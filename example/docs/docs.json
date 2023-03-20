@@ -1,0 +1,93 @@
+{
+    "info": {
+        "description": "API for Shakespeare insults",
+        "title": "Insults API",
+        "version": "1.0.0"
+    },
+    "openapi": "3.0.0",
+    "components": {
+        "schemas": {
+            "Insult": {
+                "type": "object",
+                "properties": {
+                    "insult": {
+                        "type": "string"
+                    },
+                    "play": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    },
+    "paths": {
+        "/api/insults": {
+            "get": {
+                "description": null,
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "insults": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Insult"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Returnerar insults"
+                    }
+                },
+                "summary": "Returnerar insults"
+            }
+        },
+        "/api/insults/add": {
+            "post": {
+                "description": null,
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Insult" 
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "insults": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Insult"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Lägger till en ny insult"
+                    }
+                },
+                "summary": "Lägger till en ny insult"
+            }
+        }
+    }
+}
